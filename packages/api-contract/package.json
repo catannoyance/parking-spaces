@@ -1,0 +1,23 @@
+{
+	"name": "@parkingspaces/api-contract",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"require": "./src/index.ts",
+			"import": "./src/index.ts"
+		}
+	},
+	"main": "src/index.ts",
+	"type": "module",
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@parkingspaces/db": "workspace:^",
+		"@ts-rest/core": "^3.30.5",
+		"zod": "^3.22.4"
+	}
+}
