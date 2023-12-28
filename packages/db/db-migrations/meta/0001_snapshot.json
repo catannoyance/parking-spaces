@@ -1,0 +1,96 @@
+{
+  "id": "8526cf7b-5e4a-435a-a93c-5d6cf2a9c222",
+  "prevId": "4c420bad-45cc-4daa-8d6f-ff552a1773c5",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "parking_space": {
+      "name": "parking_space",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "coords": {
+          "name": "coords",
+          "type": "GEOMETRY(POINT, 4326)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_slots": {
+          "name": "max_slots",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "paymentType": {
+          "name": "paymentType",
+          "type": "payment_type",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ownershipType": {
+          "name": "ownershipType",
+          "type": "ownership_type",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "locationType": {
+          "name": "locationType",
+          "type": "location_type",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "location_type": {
+      "name": "location_type",
+      "values": {
+        "linear": "linear",
+        "area": "area"
+      }
+    },
+    "ownership_type": {
+      "name": "ownership_type",
+      "values": {
+        "municipal": "municipal",
+        "private": "private"
+      }
+    },
+    "payment_type": {
+      "name": "payment_type",
+      "values": {
+        "free": "free",
+        "paid": "paid",
+        "conditionally_paid": "conditionally_paid"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

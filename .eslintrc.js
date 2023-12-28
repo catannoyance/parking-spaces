@@ -31,6 +31,14 @@ module.exports = {
 				varsIgnorePattern: "^_",
 			},
 		],
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				vars: "all",
+				argsIgnorePattern: "^_",
+				varsIgnorePattern: "^_",
+			},
+		],
 		"arrow-body-style": "warn",
 	},
 };

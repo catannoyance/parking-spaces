@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1703798485235,
+      "tag": "0000_eminent_impossible_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1703798491540,
+      "tag": "0001_public_daredevil",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+	"name": "@parkingspaces/db",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"main": "src/index.ts",
+	"type": "module",
+	"scripts": {
+		"generate-migrations": "drizzle-kit generate:pg",
+		"run-migrations": "tsx scripts/run-migrations.ts"
+	},
+	"exports": {
+		"./schema": {
+			"types": "./src/schema.ts",
+			"node": "./src/schema.ts",
+			"default": "./src/schema.ts"
+		},
+		"./validation": {
+			"types": "./src/validation.ts",
+			"node": "./src/validation.ts",
+			"default": "./src/validation.ts"
+		},
+		"./types": {
+			"types": "./src/types.ts",
+			"node": "./src/types.ts",
+			"default": "./src/types.ts"
+		}
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"drizzle-kit": "^0.20.9",
+		"tsx": "^4.6.2",
+		"typescript": "^5.2.2"
+	},
+	"dependencies": {
+		"drizzle-orm": "^0.29.2",
+		"drizzle-zod": "^0.5.1",
+		"pg": "^8.11.3",
+		"postgres": "^3.4.3",
+		"zod": "^3.22.4"
+	}
+}
