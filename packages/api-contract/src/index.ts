@@ -1,8 +1,8 @@
-import { initContract } from "@ts-rest/core";
-import { z } from "zod";
-import { validationSchemas } from "@parkingspaces/db/validation";
+import { initContract } from "@ts-rest/core"
+import { z } from "zod"
+import { validationSchemas } from "@parkingspaces/db/validation"
 
-const c = initContract();
+const c = initContract()
 
 export const contract = c.router(
 	{
@@ -52,4 +52,4 @@ export const contract = c.router(
 	{
 		strictStatusCodes: true,
 	},
-);
+)

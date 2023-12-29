@@ -1,1 +1,1 @@
-export type { Point } from "./postgisPoint";
+export type { Point } from "./postgisPoint"

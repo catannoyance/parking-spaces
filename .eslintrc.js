@@ -41,4 +41,4 @@ module.exports = {
 		],
 		"arrow-body-style": "warn",
 	},
-};
+}

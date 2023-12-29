@@ -2,5 +2,6 @@
 	"arrowParens": "avoid",
 	"useTabs": true,
 	"printWidth": 90,
-	"trailingComma": "all"
+	"trailingComma": "all",
+	"semi": false
 }
