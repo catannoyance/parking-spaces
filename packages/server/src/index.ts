@@ -6,7 +6,17 @@ import { db } from "./db"
 import { parkingSpace } from "@parkingspaces/db/schema"
 import { Point } from "@parkingspaces/db/types"
 import { eq, sql } from "drizzle-orm"
+import cors from "cors"
 const app = express()
+
+
+app.use(
+	cors({
+		origin: "*",
+	}),
+)
+
+app.use(express.json())
 
 app.use(morgan("combined"))
 
@@ -59,11 +69,11 @@ const router = s.router(contract, {
 		body: await db.select(selectParkingSpace()).from(parkingSpace).execute(),
 	}),
 
-	updateParkingSpace: async req => {
+	updateParkingSpace: async ctx => {
 		const result = await db
 			.update(parkingSpace)
-			.set(req.body)
-			.where(eq(parkingSpace.id, req.body.id!))
+			.set(ctx.body)
+			.where(eq(parkingSpace.id, ctx.params.id))
 			.returning(selectParkingSpace())
 			.execute()
 
