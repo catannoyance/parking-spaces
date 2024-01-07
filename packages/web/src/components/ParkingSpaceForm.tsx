@@ -11,15 +11,21 @@ const schema = validationSchemas.parkingSpace.create
 type ParkingSpaceFormProps = {
 	onSubmit: (parkingSpace: z.infer<typeof schema>) => void
 	onCancel: () => void
+	initialValues?: z.infer<typeof schema>
 }
 
-export const ParkingSpaceForm = ({ onSubmit, onCancel }: ParkingSpaceFormProps) => {
+export const ParkingSpaceForm = ({
+	onSubmit,
+	onCancel,
+	initialValues,
+}: ParkingSpaceFormProps) => {
 	const form = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
+		defaultValues: initialValues,
 	})
 
 	return (
-		<form className="w-64 p-4 flex flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
+		<form className="w-64 flex flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
 			<TextInput label="Name" {...form.register("name")} />
 
 			<TextInput label="Address" {...form.register("address")} />

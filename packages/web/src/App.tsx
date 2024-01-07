@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ParkingSpacesList } from "./routes/ParkingSpaceList"
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
-import { ParkingSpaceDisplay } from "./routes/ParkingSpaceDisplay"
+import { ParkingSpaceDetails } from "./routes/ParkingSpaceDetails"
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
@@ -15,6 +15,10 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <ParkingSpacesList />,
+			},
+			{
+				path: "/:id",
+				element: <ParkingSpaceDetails />,
 			},
 		],
 	},
