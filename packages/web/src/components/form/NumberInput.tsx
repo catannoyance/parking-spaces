@@ -3,11 +3,12 @@ import { UseFormRegisterReturn } from "react-hook-form"
 
 type NumberInputProps = {
 	label: string
+	step?: number
 } & UseFormRegisterReturn
 
 export const NumberInput = forwardRef(
 	(
-		{ label, ...registerProps }: NumberInputProps,
+		{ label, step, ...registerProps }: NumberInputProps,
 		ref: ForwardedRef<HTMLInputElement>,
 	) => {
 		const id = useId()
@@ -21,7 +22,7 @@ export const NumberInput = forwardRef(
 					className="border border-slate-400 rounded-sm p-1"
 					id={id}
 					type="number"
-					step={1}
+					step={step ?? "any"}
 					{...registerProps}
 					ref={ref}
 				/>

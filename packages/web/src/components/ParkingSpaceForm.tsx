@@ -26,6 +26,7 @@ export const ParkingSpaceForm = ({ onSubmit, onCancel }: ParkingSpaceFormProps) 
 
 			<NumberInput
 				label="Spaces"
+				step={1}
 				{...form.register("maxSlots", {
 					valueAsNumber: true,
 				})}
