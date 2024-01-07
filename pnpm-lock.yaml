@@ -134,6 +134,9 @@ importers:
       '@ts-rest/react-query':
         specifier: ^3.30.5
         version: 3.31.0(@tanstack/react-query@4.36.1)(react@18.2.0)(zod@3.22.4)
+      lucide-react:
+        specifier: ^0.306.0
+        version: 0.306.0(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2624,6 +2627,14 @@ packages:
     dependencies:
       es5-ext: 0.10.62
     dev: true
+
+  /lucide-react@0.306.0(react@18.2.0):
+    resolution: {integrity: sha512-eShuk2PI3vxN4YN8kNPmhAsroSvPXbtaxU/UX/zrBcLLg8FeFH9MG7C2EYzYsT2rNrPVjbP7rpBz3mOviZYN3A==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
