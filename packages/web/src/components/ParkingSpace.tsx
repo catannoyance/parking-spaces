@@ -11,6 +11,19 @@ type ParkingSpaceProps = {
 	style: "full" | "compact"
 }
 
+const formatLocationType = (locationType: ParkingSpace["locationType"]) =>
+	locationType == "area" ? "Линейное" : "Площадное"
+
+const formatOwnershipType = (ownershipType: ParkingSpace["ownershipType"]) =>
+	ownershipType == "private" ? "Частное" : "Муниципальное"
+
+const formatPaymentType = (paymentType: ParkingSpace["paymentType"]) =>
+	paymentType == "free"
+		? "Бесплатное"
+		: paymentType == "paid"
+			? "Платное"
+			: "Условно бесплатное"
+
 export const ParkingSpaceView = React.memo(
 	({ parkingSpace, linkTo, style }: ParkingSpaceProps) => {
 		const { coords } = parkingSpace
@@ -44,19 +57,22 @@ export const ParkingSpaceView = React.memo(
 							{displayLabels && "Кол-во мест:"} {parkingSpace.maxSlots}
 						</WithIcon>
 						<WithIcon icon={Grid2X2} tooltip="Тип расположения">
-							{displayLabels && "Тип расположения:"} {parkingSpace.locationType}
+							{displayLabels && "Тип расположения:"}{" "}
+							{formatLocationType(parkingSpace.locationType)}
 						</WithIcon>
 					</div>
 					<div className="flex flex-col gap-1">
 						<WithIcon icon={HelpingHand} tooltip="Принадлежность">
-							{displayLabels && "Принадлежность:"} {parkingSpace.ownershipType}
+							{displayLabels && "Принадлежность:"}{" "}
+							{formatOwnershipType(parkingSpace.ownershipType)}
 						</WithIcon>
 						<WithIcon icon={Coins} tooltip="Доступность">
-							{displayLabels && "Доступность:"} {parkingSpace.paymentType}
+							{displayLabels && "Доступность:"}{" "}
+							{formatPaymentType(parkingSpace.paymentType)}
 						</WithIcon>
 						{parkingSpace.paymentType === "conditionally_paid" &&
 							parkingSpace.conditionallyPaidSchedule !== null && (
-								<WithIcon tooltip="Расписание" icon={Calendar}>
+								<WithIcon tooltip="Расписание платной парковки" icon={Calendar}>
 									{displayLabels && "Расписание:"}{" "}
 									{parkingSpace.conditionallyPaidSchedule}
 								</WithIcon>

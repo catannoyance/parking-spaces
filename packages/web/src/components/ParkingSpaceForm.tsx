@@ -28,12 +28,12 @@ export const ParkingSpaceForm = ({
 
 	return (
 		<form className="w-64 flex flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
-			<TextInput label="Name" {...form.register("name")} />
+			<TextInput label="Наименование" {...form.register("name")} />
 
-			<TextInput label="Address" {...form.register("address")} />
+			<TextInput label="Адрес" {...form.register("address")} />
 
 			<NumberInput
-				label="Spaces"
+				label="Кол-во мест"
 				step={1}
 				{...form.register("maxSlots", {
 					valueAsNumber: true,
@@ -41,28 +41,28 @@ export const ParkingSpaceForm = ({
 			/>
 
 			<NumberInput
-				label="Latitude"
+				label="Широта"
 				{...form.register("coords.latitude", {
 					valueAsNumber: true,
 				})}
 			/>
 
 			<NumberInput
-				label="Longitude"
+				label="Долгота"
 				{...form.register("coords.longitude", {
 					valueAsNumber: true,
 				})}
 			/>
 
 			<RadioGroup
-				label="Type"
+				label="Тип расположения"
 				options={[
 					{
-						label: "Area",
+						label: "Площадный",
 						value: "area",
 					},
 					{
-						label: "Linear",
+						label: "Линейный",
 						value: "linear",
 					},
 				]}
@@ -70,14 +70,14 @@ export const ParkingSpaceForm = ({
 			/>
 
 			<RadioGroup
-				label="Ownership"
+				label="Принадлежность"
 				options={[
 					{
-						label: "Municipal",
+						label: "Муниципальная",
 						value: "municipal",
 					},
 					{
-						label: "Private",
+						label: "Частная",
 						value: "private",
 					},
 				]}
@@ -85,18 +85,18 @@ export const ParkingSpaceForm = ({
 			/>
 
 			<RadioGroup
-				label="Availability"
+				label="Доспупность"
 				options={[
 					{
-						label: "Free",
+						label: "Бесплатная",
 						value: "free",
 					},
 					{
-						label: "Paid",
+						label: "Платная",
 						value: "paid",
 					},
 					{
-						label: "Conditional",
+						label: "Условно бесплатная",
 						value: "conditionally_paid",
 					},
 				]}
@@ -104,15 +104,18 @@ export const ParkingSpaceForm = ({
 			/>
 
 			{watchPaymentType === "conditionally_paid" && (
-				<TextInput label="Schedule" {...form.register("conditionallyPaidSchedule")} />
+				<TextInput
+					label="График платной парковки"
+					{...form.register("conditionallyPaidSchedule")}
+				/>
 			)}
 
 			<div className="flex flex-row gap-2 justify-evenly [&>*]:flex-1">
 				<Button type="submit" visualType="primary">
-					Submit
+					Добавить
 				</Button>
 				<Button type="button" visualType="secondary" onClick={onCancel}>
-					Cancel
+					Отменить
 				</Button>
 			</div>
 		</form>
