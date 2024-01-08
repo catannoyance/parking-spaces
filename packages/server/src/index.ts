@@ -88,6 +88,25 @@ const router = s.router(contract, {
 			body: result[0],
 		}
 	},
+
+	deleteParkingSpace: async ctx => {
+		const result = await db
+			.delete(parkingSpace)
+			.where(eq(parkingSpace.id, ctx.params.id))
+			.returning(selectParkingSpace())
+			.execute()
+
+		if (result.length === 0) {
+			return {
+				status: 404,
+			}
+		}
+
+		return {
+			status: 200,
+			body: result[0],
+		}
+	}
 })
 
 createExpressEndpoints(contract, router, app)

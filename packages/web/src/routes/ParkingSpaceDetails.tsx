@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { restQueryClient } from "../queryClient"
 import { MapPin, Car, Grid2X2, HelpingHand, Coins, Map as MapIcon } from "lucide-react"
 import { WithIcon } from "../components/WithIcon"
@@ -16,6 +16,7 @@ export const ParkingSpaceDetails = () => {
 	const [isEditing, setIsEditing] = useState(false)
 	const startEdit = useCallback(() => setIsEditing(true), [])
 	const cancelEdit = useCallback(() => setIsEditing(false), [])
+	const navigate = useNavigate()
 
 	const queryClient = useQueryClient()
 	useEffect(() => {
@@ -28,7 +29,7 @@ export const ParkingSpaceDetails = () => {
 
 	const updateParkingSpace = restQueryClient.updateParkingSpace.useMutation()
 	const commitEdit = useCallback(
-		async (data: z.infer<typeof schema>) => {
+		(data: z.infer<typeof schema>) => {
 			setIsEditing(false)
 			updateParkingSpace.mutate(
 				{ params: { id: id! }, body: data },
@@ -41,6 +42,18 @@ export const ParkingSpaceDetails = () => {
 		},
 		[id, queryClient, updateParkingSpace],
 	)
+
+	const deleteParkingSpaceQuery = restQueryClient.deleteParkingSpace.useMutation()
+	const deleteParkingSpace = useCallback(() => {
+		deleteParkingSpaceQuery.mutate(
+			{ params: { id: id! } },
+			{
+				onSuccess: () => {
+					navigate("/")
+				},
+			},
+		)
+	}, [deleteParkingSpaceQuery, id, navigate])
 
 	if (parkingSpace.isLoading) {
 		return <div>Loading...</div>
@@ -83,6 +96,9 @@ export const ParkingSpaceDetails = () => {
 						<WithIcon icon={Coins}>Доступность: {data.paymentType}</WithIcon>
 						<Button visualType="primary" onClick={startEdit}>
 							Редактировать
+						</Button>
+						<Button visualType="destructive" onClick={deleteParkingSpace}>
+							Удалить
 						</Button>
 					</div>
 				</div>

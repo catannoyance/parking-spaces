@@ -48,6 +48,19 @@ export const contract = c.router(
 				404: z.undefined(),
 			},
 		}),
+
+		deleteParkingSpace: c.mutation({
+			path: "/parking-space/:id",
+			method: "DELETE",
+			pathParams: z.object({
+				id: z.string().transform(Number),
+			}),
+			body: z.object({}),
+			responses: {
+				200: validationSchemas.parkingSpace.select,
+				404: z.undefined(),
+			},
+		}),
 	},
 	{
 		strictStatusCodes: true,
