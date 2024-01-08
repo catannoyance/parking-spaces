@@ -10,7 +10,7 @@ services:
   web:
     build:
       dockerfile: ./web.dockerfile
+      args:
+        - VITE_API_URL=$VITE_API_URL
     ports:
-      - "5412:80"
-    environment:
-      - VITE_API_URL=$VITE_API_URL
+      - "80:80"

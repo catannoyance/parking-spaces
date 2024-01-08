@@ -11,10 +11,13 @@ run pnpm install
 copy . .
 
 workdir /app/packages/web
+arg VITE_API_URL
+env VITE_API_URL=$VITE_API_URL
 run pnpm run build
 
 from nginx:1.25.3-alpine
 workdir /app
+copy --from=build /app/packages/web/nginx.conf /etc/nginx/conf.d/default.conf
 copy --from=build /app/packages/web/dist /usr/share/nginx/html
 
 cmd nginx -g 'daemon off;'

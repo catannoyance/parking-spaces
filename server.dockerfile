@@ -10,4 +10,4 @@ copy ./packages/web/package.json ./packages/web/package.json
 run pnpm install --filter=!@parkingspaces/web
 copy . .
 
-cmd pnpm run --filter @parkingspaces/db run-migrations && pnpm run --filter @parkingspaces/server dev
+cmd pnpm run --filter @parkingspaces/db run-migrations && pnpm run --filter @parkingspaces/server start

@@ -21,7 +21,6 @@ const db = createDbClient()
 
 const app = express()
 
-
 app.use(
 	cors({
 		origin: "*",

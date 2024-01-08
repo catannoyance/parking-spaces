@@ -55,11 +55,11 @@ export const ParkingSpaceDetails = () => {
 	}, [deleteParkingSpaceQuery, id, navigate])
 
 	if (parkingSpace.isLoading) {
-		return <div>Loading...</div>
+		return <div>Загрузка...</div>
 	}
 
 	if (parkingSpace.isError) {
-		return <div>Error ..</div>
+		return <div>Ошибка ..</div>
 	}
 
 	const data = parkingSpace.data!.body
@@ -76,10 +76,10 @@ export const ParkingSpaceDetails = () => {
 				&lt; Назад
 			</Link>
 			{!isEditing && (
-				<div className="flex flex-row gap-8">
-					<div className="w-96 h-96">
+				<div className="flex flex-col md:flex-row gap-8">
+					<div className="">
 						<YMaps>
-							<Map className="w-full h-full" defaultState={defaultState}>
+							<Map className="w-96 h-96" defaultState={defaultState}>
 								<Placemark geometry={position} />
 							</Map>
 						</YMaps>
