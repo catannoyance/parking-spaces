@@ -18,4 +18,5 @@ export const parkingSpace = pgTable("parking_space", {
 	paymentType: paymentTypeEnum("paymentType").notNull(),
 	ownershipType: ownershipTypeEnum("ownershipType").notNull(),
 	locationType: locationTypeEnum("locationType").notNull(),
+	conditionallyPaidSchedule: text("conditionally_paid_schedule"),
 })

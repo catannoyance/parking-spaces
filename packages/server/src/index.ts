@@ -31,6 +31,7 @@ const selectParkingSpace = () => ({
 	locationType: parkingSpace.locationType,
 	paymentType: parkingSpace.paymentType,
 	ownershipType: parkingSpace.ownershipType,
+	conditionallyPaidSchedule: parkingSpace.conditionallyPaidSchedule,
 })
 
 const router = s.router(contract, {
@@ -106,7 +107,7 @@ const router = s.router(contract, {
 			status: 200,
 			body: result[0],
 		}
-	}
+	},
 })
 
 createExpressEndpoints(contract, router, app)

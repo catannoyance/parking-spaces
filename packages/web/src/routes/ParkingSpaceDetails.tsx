@@ -1,6 +1,14 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { restQueryClient } from "../queryClient"
-import { MapPin, Car, Grid2X2, HelpingHand, Coins, Map as MapIcon } from "lucide-react"
+import {
+	MapPin,
+	Car,
+	Grid2X2,
+	HelpingHand,
+	Coins,
+	Map as MapIcon,
+	Calendar,
+} from "lucide-react"
 import { WithIcon } from "../components/WithIcon"
 import { ParkingSpaceForm } from "../components/ParkingSpaceForm"
 import { Button } from "../components/form/Button"
@@ -94,6 +102,14 @@ export const ParkingSpaceDetails = () => {
 						<WithIcon icon={Grid2X2}>Тип расположения: {data.locationType}</WithIcon>
 						<WithIcon icon={HelpingHand}>Принадлежность: {data.ownershipType}</WithIcon>
 						<WithIcon icon={Coins}>Доступность: {data.paymentType}</WithIcon>
+
+						{data.paymentType === "conditionally_paid" &&
+							data.conditionallyPaidSchedule !== null && (
+								<WithIcon icon={Calendar}>
+									Расписание: {data.conditionallyPaidSchedule}
+								</WithIcon>
+							)}
+
 						<Button visualType="primary" onClick={startEdit}>
 							Редактировать
 						</Button>

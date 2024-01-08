@@ -24,6 +24,8 @@ export const ParkingSpaceForm = ({
 		defaultValues: initialValues,
 	})
 
+	const watchPaymentType = form.watch("paymentType")
+
 	return (
 		<form className="w-64 flex flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
 			<TextInput label="Name" {...form.register("name")} />
@@ -95,11 +97,15 @@ export const ParkingSpaceForm = ({
 					},
 					{
 						label: "Conditional",
-						value: "conditionally_free",
+						value: "conditionally_paid",
 					},
 				]}
 				register={() => form.register("paymentType")}
 			/>
+
+			{watchPaymentType === "conditionally_paid" && (
+				<TextInput label="Schedule" {...form.register("conditionallyPaidSchedule")} />
+			)}
 
 			<div className="flex flex-row gap-2 justify-evenly [&>*]:flex-1">
 				<Button type="submit" visualType="primary">

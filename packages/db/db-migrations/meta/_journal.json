@@ -15,6 +15,13 @@
       "when": 1703798491540,
       "tag": "0001_public_daredevil",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1704716704356,
+      "tag": "0002_broken_infant_terrible",
+      "breakpoints": true
     }
   ]
 }

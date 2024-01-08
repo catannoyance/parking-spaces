@@ -1,0 +1,1 @@
+ALTER TABLE "parking_space" ADD COLUMN "conditionally_paid_schedule" text;
