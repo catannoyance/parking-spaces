@@ -2,11 +2,21 @@ import express from "express"
 import morgan from "morgan"
 import { contract } from "@parkingspaces/api-contract"
 import { initServer, createExpressEndpoints } from "@ts-rest/express"
-import { db } from "./db"
+import { createDbClient } from "./db"
 import { parkingSpace } from "@parkingspaces/db/schema"
 import { Point } from "@parkingspaces/db/types"
 import { eq, sql } from "drizzle-orm"
 import cors from "cors"
+import dotenv from "dotenv"
+
+dotenv.config()
+
+if (!process.env.DB_CONNECTION_STRING) {
+	throw new Error("DB_CONNECTION_STRING env variable is not set")
+}
+
+const db = createDbClient()
+
 const app = express()
 
 

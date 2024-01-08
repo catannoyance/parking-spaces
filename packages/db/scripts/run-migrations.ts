@@ -1,11 +1,16 @@
 import { drizzle } from "drizzle-orm/postgres-js"
 import { migrate } from "drizzle-orm/postgres-js/migrator"
-import config from "../drizzle.config"
 import postgres from "postgres"
 
-const connectionString = config.dbCredentials.connectionString
+import dotenv from "dotenv"
 
-const sql = postgres(connectionString, { max: 1 })
+dotenv.config()
+
+if (!process.env.DB_CONNECTION_STRING) {
+	throw new Error("DB_CONNECTION_STRING env variable is not set")
+}
+
+const sql = postgres(process.env.DB_CONNECTION_STRING, { max: 1 })
 const db = drizzle(sql)
 
 await migrate(db, { migrationsFolder: "./db-migrations" })
