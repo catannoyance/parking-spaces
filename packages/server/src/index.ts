@@ -2,6 +2,8 @@ import express from "express"
 import morgan from "morgan"
 import { contract } from "@parkingspaces/api-contract"
 import { initServer, createExpressEndpoints } from "@ts-rest/express"
+import { generateOpenApi } from "@ts-rest/open-api"
+import * as swaggerUi from "swagger-ui-express"
 import { createDbClient } from "./db"
 import { parkingSpace } from "@parkingspaces/db/schema"
 import { Point } from "@parkingspaces/db/types"
@@ -121,6 +123,21 @@ const router = s.router(contract, {
 })
 
 createExpressEndpoints(contract, router, app)
+
+const openApiDocument = generateOpenApi(
+	contract,
+	{
+		info: {
+			title: "Parking Spaces",
+			version: "1.0.0",
+		},
+	},
+	{
+		setOperationId: true,
+	},
+)
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiDocument))
 
 app.listen(8000, () => {
 	console.log("Listening on port 8000")
