@@ -42,7 +42,7 @@ export const contract = c.router(
 			pathParams: z.object({
 				id: z.string().transform(Number),
 			}),
-			body: validationSchemas.parkingSpace.create.partial(),
+			body: validationSchemas.parkingSpace.create.partial().omit({ id: true }),
 			responses: {
 				200: validationSchemas.parkingSpace.select,
 				404: z.undefined(),
