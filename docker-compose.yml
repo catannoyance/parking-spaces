@@ -1,0 +1,16 @@
+version: "3"
+services:
+  server:
+    build:
+      dockerfile: server.dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_CONNECTION_STRING=$DB_CONNECTION_STRING
+  web:
+    build:
+      dockerfile: ./web.dockerfile
+    ports:
+      - "5412:80"
+    environment:
+      - VITE_API_URL=$VITE_API_URL
