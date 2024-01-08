@@ -31,7 +31,7 @@ export const ParkingSpacesList = () => {
 	)
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="flex flex-col gap-2 divide-y divide-slate-200">
 			{!isAdding && (
 				<Button visualType="primary" onClick={() => setIsAdding(true)}>
 					+ Add
@@ -44,7 +44,12 @@ export const ParkingSpacesList = () => {
 				/>
 			)}
 			{query.data?.body?.map(space => (
-				<ParkingSpaceView parkingSpace={space} key={space.id} />
+				<ParkingSpaceView
+					parkingSpace={space}
+					key={space.id}
+					style="compact"
+					linkTo={`/${space.id}`}
+				/>
 			))}
 		</div>
 	)

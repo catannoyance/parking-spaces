@@ -1,15 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { restQueryClient } from "../queryClient"
-import {
-	MapPin,
-	Car,
-	Grid2X2,
-	HelpingHand,
-	Coins,
-	Map as MapIcon,
-	Calendar,
-} from "lucide-react"
-import { WithIcon } from "../components/WithIcon"
 import { ParkingSpaceForm } from "../components/ParkingSpaceForm"
 import { Button } from "../components/form/Button"
 import { useCallback, useEffect, useState } from "react"
@@ -17,6 +7,7 @@ import { useQueryClient } from "@tanstack/react-query"
 import { z } from "zod"
 import { validationSchemas } from "@parkingspaces/db/validation"
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps"
+import { ParkingSpaceView } from "../components/ParkingSpace"
 
 const schema = validationSchemas.parkingSpace.create
 export const ParkingSpaceDetails = () => {
@@ -72,7 +63,6 @@ export const ParkingSpaceDetails = () => {
 	}
 
 	const data = parkingSpace.data!.body
-	const coordsString = `${data.coords.latitude}, ${data.coords.longitude}`
 
 	const position = [data.coords.latitude, data.coords.longitude] as [number, number]
 	const defaultState = {
@@ -94,22 +84,8 @@ export const ParkingSpaceDetails = () => {
 							</Map>
 						</YMaps>
 					</div>
-					<div className="flex flex-col gap-4">
-						<h3 className="text-lg font-bold">{data.name}</h3>
-						<WithIcon icon={MapPin}>Адрес: {data.address}</WithIcon>
-						<WithIcon icon={MapIcon}>Координаты: {coordsString}</WithIcon>
-						<WithIcon icon={Car}>Кол-во мест: {data.maxSlots}</WithIcon>
-						<WithIcon icon={Grid2X2}>Тип расположения: {data.locationType}</WithIcon>
-						<WithIcon icon={HelpingHand}>Принадлежность: {data.ownershipType}</WithIcon>
-						<WithIcon icon={Coins}>Доступность: {data.paymentType}</WithIcon>
-
-						{data.paymentType === "conditionally_paid" &&
-							data.conditionallyPaidSchedule !== null && (
-								<WithIcon icon={Calendar}>
-									Расписание: {data.conditionallyPaidSchedule}
-								</WithIcon>
-							)}
-
+					<div className="flex flex-col gap-2">
+						<ParkingSpaceView parkingSpace={data} style="full" />
 						<Button visualType="primary" onClick={startEdit}>
 							Редактировать
 						</Button>
